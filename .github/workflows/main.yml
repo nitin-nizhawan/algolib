@@ -32,11 +32,9 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          sudo apt update -y
-          sudo apt install -y python3
           wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
           sudo dpkg -i packages-microsoft-prod.deb
           rm packages-microsoft-prod.deb
-          sudo apt-get  update -y
-          sudo apt-get install -y dotnet-sdk-6.0
-          sudo apt-get install -y cmake
+          sudo apt update -y
+          sudo apt install -y python3 dotnet-sdk-6.0 cmake
+          ./test.sh

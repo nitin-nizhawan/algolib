@@ -1,0 +1,2 @@
+. ./setup_python_env.sh
+find ./ -name "test_*.py" | xargs -I xxxx python3 xxxx

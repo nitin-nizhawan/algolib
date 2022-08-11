@@ -1,0 +1,12 @@
+{
+    "testcase1":{
+        "haystack":"",
+        "needle":"",
+        "output":0
+    },
+    "testcase2":{
+        "haystack":"",
+        "needle":"",
+        "output":0
+    }
+}

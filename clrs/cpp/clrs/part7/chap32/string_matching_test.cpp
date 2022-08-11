@@ -1,15 +1,14 @@
 #include "string_matching.h"
-#include<iostream>
+#include <iostream>
 using namespace std;
 using namespace part7::chap32;
 
-int main(){
-
+int main()
+{
     auto idx = StringMatching::RabinKarp(
         "TEST",
-        "THIS IS A TEST TEXT"
-    );
-    
-    cout<<" Runing test "<<idx;
+        "THIS IS A TEST TEXT");
+
+    cout << " Runing test " << idx;
     return !(idx == 10);
 }

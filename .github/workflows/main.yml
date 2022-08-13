@@ -84,10 +84,3 @@ jobs:
           # Default: true
           push: 'origin main:gh-pages --force'
 
-          # Arguments for the git tag command (the tag name always needs to be the first word not preceded by an hyphen)
-          # Default: ''
-          tag: 'v1.0.0 --force'
-
-          # Arguments for the git push --tags command (any additional argument will be added after --tags)
-          # Default: ''
-          tag_push: '--force'

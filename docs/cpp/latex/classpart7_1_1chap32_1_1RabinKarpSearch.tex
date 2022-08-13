@@ -1,0 +1,67 @@
+\hypertarget{classpart7_1_1chap32_1_1RabinKarpSearch}{}\doxysection{part7\+::chap32\+::Rabin\+Karp\+Search Class Reference}
+\label{classpart7_1_1chap32_1_1RabinKarpSearch}\index{part7::chap32::RabinKarpSearch@{part7::chap32::RabinKarpSearch}}
+
+
+this class implements rabin karp search  
+
+
+
+
+{\ttfamily \#include $<$rabin\+\_\+karp.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpart7_1_1chap32_1_1RabinKarpSearch_a9ff8a335f985288b8e2b1eaa9f4eaa3f}{Rabin\+Karp\+Search}} (const string \&pattern)
+\begin{DoxyCompactList}\small\item\em Construct a new Rabin Karp Search object Creates an instance of rabing karp searcher for a given pattern. This instance can be used to search on any number of texts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpart7_1_1chap32_1_1RabinKarpSearch_a7891135f7bbdca345fe0c8023eeecd05}{Search}} (const string \&haystack) const
+\begin{DoxyCompactList}\small\item\em method to search in a text This method will search for the pattern with which this instance of searcher was created. It returns the first occurance of the instance \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+this class implements rabin karp search 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpart7_1_1chap32_1_1RabinKarpSearch_a9ff8a335f985288b8e2b1eaa9f4eaa3f}\label{classpart7_1_1chap32_1_1RabinKarpSearch_a9ff8a335f985288b8e2b1eaa9f4eaa3f}} 
+\index{part7::chap32::RabinKarpSearch@{part7::chap32::RabinKarpSearch}!RabinKarpSearch@{RabinKarpSearch}}
+\index{RabinKarpSearch@{RabinKarpSearch}!part7::chap32::RabinKarpSearch@{part7::chap32::RabinKarpSearch}}
+\doxysubsubsection{\texorpdfstring{RabinKarpSearch()}{RabinKarpSearch()}}
+{\footnotesize\ttfamily part7\+::chap32\+::\+Rabin\+Karp\+Search\+::\+Rabin\+Karp\+Search (\begin{DoxyParamCaption}\item[{const string \&}]{pattern }\end{DoxyParamCaption})}
+
+
+
+Construct a new Rabin Karp Search object Creates an instance of rabing karp searcher for a given pattern. This instance can be used to search on any number of texts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & the pattern which has to be searched \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpart7_1_1chap32_1_1RabinKarpSearch_a7891135f7bbdca345fe0c8023eeecd05}\label{classpart7_1_1chap32_1_1RabinKarpSearch_a7891135f7bbdca345fe0c8023eeecd05}} 
+\index{part7::chap32::RabinKarpSearch@{part7::chap32::RabinKarpSearch}!Search@{Search}}
+\index{Search@{Search}!part7::chap32::RabinKarpSearch@{part7::chap32::RabinKarpSearch}}
+\doxysubsubsection{\texorpdfstring{Search()}{Search()}}
+{\footnotesize\ttfamily int part7\+::chap32\+::\+Rabin\+Karp\+Search\+::\+Search (\begin{DoxyParamCaption}\item[{const string \&}]{haystack }\end{DoxyParamCaption}) const}
+
+
+
+method to search in a text This method will search for the pattern with which this instance of searcher was created. It returns the first occurance of the instance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em haystack} & the text which has to be searched \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int index of the pattern. If pattern is not found then -\/1 is returned 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+clrs/cpp/clrs/part7/chap32/rabin\+\_\+karp.\+h\end{DoxyCompactItemize}

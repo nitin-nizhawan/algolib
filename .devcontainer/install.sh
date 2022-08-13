@@ -1,1 +1,1 @@
-sudo apt install -y doxygen
+sudo apt install -y doxygen graphviz

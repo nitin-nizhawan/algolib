@@ -51,15 +51,22 @@ class AdjGraph:
 
 def DFS(graph):
 
-    # enum class color
-    # defines three enums 
-    # used as vertex states
-    # as it is traversed DFS
+    """
+    enum class color
+     defines three enums 
+    used as vertex states
+     as it is traversed DFS
+    """
     class Color(enum.Enum):
         WHITE = 1
         GRAY = 2
         BLACK = 3
 
+    class EdgeType(enum.Enum):
+        TREE_EDGE = 1
+        BACK_EDGE = 2
+        FORWARD_EDGE = 3
+        CROSS_EDGE = 4
     num_vertices = graph.getNumVertices()
 
     # used to maintain state for each vertex
@@ -68,7 +75,11 @@ def DFS(graph):
     # these states are represented by colors
     # WHITE, GRAY and BLACK respectively
     color = [Color.WHITE] * num_vertices
-
+ 
+    #
+    #  Matrix used to store edge types
+    #
+    edge_matrix = [[0] * num_vertices]*num_vertices
 
     # predecessor array. After DFS pi[u] points to the vertex from
     # which 'u' was first discovered
@@ -101,19 +112,26 @@ def DFS(graph):
             v = vertex_u.getEdge(edge_idx)
             # first time discovering v
             if color[v] == Color.WHITE:
+                edge_matrix[u][v] = EdgeType.TREE_EDGE
                 pi[v] = u
                 DFS_VISIT(v)
+            elif color[v] == Color.GRAY:
+                edge_matrix[u][v] = EdgeType.BACK_EDGE
+            elif d[u] < d[v]:
+                edge_matrix[u][v] = EdgeType.FORWARD_EDGE
+            else:
+                edge_matrix[u][v] = EdgeType.CROSS_EDGE
         # vertex u is finished
         color[u] = Color.BLACK
         time = time + 1
         f[u] = time
 
-    DFSResult = namedtuple("DFSResult",["pi","d","f"])
+    DFSResult = namedtuple("DFSResult",["pi","d","f","edge_type"])
 
 
     for u in range(0, num_vertices):
         if color[u] == Color.WHITE:
             DFS_VISIT(u)
    
-    return DFSResult(pi,d,f)
+    return DFSResult(pi,d,f,edge_type=edge_matrix)
 

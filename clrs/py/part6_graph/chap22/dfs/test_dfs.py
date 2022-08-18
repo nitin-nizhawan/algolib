@@ -58,5 +58,17 @@ class TestDFS(unittest.TestCase):
         print(result.f)
         self.assertEquals(6,len(result.pi),"pre decessor should be 6")
 
+    def test_edge_types(self):
+        g = self.createCRLSGraph()
+        num_vertices = g.getNumVertices()
+        result = dfs.DFS(g)
+        edge_matrix = result.edge_type
+        for u in range(0,num_vertices):
+            for v in range(0, num_vertices):
+                uname = g.getVertex(u).name
+                vname = g.getVertex(v).name
+                if edge_matrix[u][v] != 0:
+                    print("edge ("+uname+","+vname+") is ",edge_matrix[u][v]) 
+
 if __name__ == "__main__":
     unittest.main()

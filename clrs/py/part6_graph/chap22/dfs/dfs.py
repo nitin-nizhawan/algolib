@@ -47,7 +47,11 @@ class AdjGraph:
     def getVertexByName(self,name):
         return self.getVertex(self.vertexMap[name])
 
-
+class EdgeType(enum.Enum):
+    TREE_EDGE = 1
+    BACK_EDGE = 2
+    FORWARD_EDGE = 3
+    CROSS_EDGE = 4
 
 def DFS(graph):
 
@@ -62,11 +66,7 @@ def DFS(graph):
         GRAY = 2
         BLACK = 3
 
-    class EdgeType(enum.Enum):
-        TREE_EDGE = 1
-        BACK_EDGE = 2
-        FORWARD_EDGE = 3
-        CROSS_EDGE = 4
+
     num_vertices = graph.getNumVertices()
 
     # used to maintain state for each vertex
@@ -79,7 +79,10 @@ def DFS(graph):
     #
     #  Matrix used to store edge types
     #
-    edge_matrix = [[0] * num_vertices]*num_vertices
+    edge_matrix = []
+    for i in range(0,num_vertices):
+        p = [0]*num_vertices
+        edge_matrix.append(p)
 
     # predecessor array. After DFS pi[u] points to the vertex from
     # which 'u' was first discovered
@@ -110,17 +113,21 @@ def DFS(graph):
         vertex_u = graph.getVertex(u)
         for edge_idx in range(0,vertex_u.getNumEdges()):
             v = vertex_u.getEdge(edge_idx)
+
+            if edge_matrix[u][v] == 0 and color[v] == Color.WHITE:
+                 edge_matrix[u][v] = EdgeType.TREE_EDGE              
+            elif edge_matrix[u][v] == 0 and color[v] == Color.GRAY:
+                edge_matrix[u][v] = EdgeType.BACK_EDGE
+            elif edge_matrix[u][v] == 0 and d[u] < d[v]:
+                edge_matrix[u][v] = EdgeType.FORWARD_EDGE
+            elif edge_matrix[u][v] == 0 and d[u] > d[v]:
+                edge_matrix[u][v] = EdgeType.CROSS_EDGE
+
             # first time discovering v
-            if color[v] == Color.WHITE:
-                edge_matrix[u][v] = EdgeType.TREE_EDGE
+            if color[v] == Color.WHITE:            
                 pi[v] = u
                 DFS_VISIT(v)
-            elif color[v] == Color.GRAY:
-                edge_matrix[u][v] = EdgeType.BACK_EDGE
-            elif d[u] < d[v]:
-                edge_matrix[u][v] = EdgeType.FORWARD_EDGE
-            else:
-                edge_matrix[u][v] = EdgeType.CROSS_EDGE
+
         # vertex u is finished
         color[u] = Color.BLACK
         time = time + 1

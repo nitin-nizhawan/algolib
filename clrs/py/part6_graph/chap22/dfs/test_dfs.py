@@ -56,19 +56,34 @@ class TestDFS(unittest.TestCase):
         print(result.pi)
         print(result.d)
         print(result.f)
-        self.assertEquals(6,len(result.pi),"pre decessor should be 6")
+        self.assertEqual(6,len(result.pi),"pre decessor should be 6")
 
+    """there are 4 tree edges in graph and there are n vertices
+    dfs finds a forrest with two dfs trees
+    1 tree having 4 vertices and 3 tree edges and 1 tree having 2 vertices and 1 tree edge
+    """
     def test_edge_types(self):
         g = self.createCRLSGraph()
         num_vertices = g.getNumVertices()
         result = dfs.DFS(g)
         edge_matrix = result.edge_type
-        for u in range(0,num_vertices):
-            for v in range(0, num_vertices):
-                uname = g.getVertex(u).name
-                vname = g.getVertex(v).name
-                if edge_matrix[u][v] != 0:
-                    print("edge ("+uname+","+vname+") is ",edge_matrix[u][v]) 
+
+        # following edges are tree edges
+        self.assertEqual(dfs.EdgeType.TREE_EDGE, edge_matrix[0][1])
+        self.assertEqual(dfs.EdgeType.TREE_EDGE, edge_matrix[1][4])
+        self.assertEqual(dfs.EdgeType.TREE_EDGE, edge_matrix[2][5])
+        self.assertEqual(dfs.EdgeType.TREE_EDGE, edge_matrix[4][3])
+
+        # following two are backedges
+        self.assertEqual(dfs.EdgeType.BACK_EDGE, edge_matrix[3][1])
+        self.assertEqual(dfs.EdgeType.BACK_EDGE, edge_matrix[5][5])
+
+        # following is forward edges
+        self.assertEqual(dfs.EdgeType.FORWARD_EDGE, edge_matrix[0][3])
+
+        # 1 cross edge
+        self.assertEqual(dfs.EdgeType.CROSS_EDGE, edge_matrix[2][4])
+
 
 if __name__ == "__main__":
     unittest.main()

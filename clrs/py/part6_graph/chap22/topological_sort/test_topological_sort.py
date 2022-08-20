@@ -25,9 +25,9 @@ class TestTopologicalSort(unittest.TestCase):
         g = self.createCRLSGraph()
         topo_order = topological_sort.topological_sort(g)
 
-        result = list(map(lambda x: x.name,topo_order))
+        result = topo_order
         
-        self.assertEquals("jacket",result[len(result)-1],"jacket should be worn last")
+        self.assertEqual("jacket",result[len(result)-1],"jacket should be worn last")
         self.assertGreater(result.index("belt"),result.index("undershorts"),"belt should be worn after undershorts")
 
 

@@ -20,18 +20,22 @@ public class KMPSearch {
                 }
             
             }
-           // Console.WriteLine(string.Join(",",lps));
+           lps = new int[]{0,0,-1,0,0,-1,4,-1,0,1};
+           Console.WriteLine(string.Join(",",lps));
         }
         public int Search(string haystack){
             if(lps.Length < 1) return 0;
             int i=0;
             int j=0;
+            int count = 0;
             while(i<haystack.Length){
+                Console.WriteLine($"Matching parttern[{j}] with text[{i}] : {haystack[i]==pattern[j]} , {++count}");
                 if(haystack[i]==pattern[j]){
                     i++;
                     j++;
-                } else if(j==0){
+                } else if(j==0 || this.lps[j-1] == -1){
                     i++;
+                    j=0;
                 } else {
                     j = this.lps[j-1];
                 }               
